@@ -14,14 +14,13 @@
 
   <style>
     :root{
-      --sofa:#E02130;                /* pick the photo’s red (adjust if needed) */
-      --bg: color-mix(in oklab, var(--sofa) 74%, white);
+      --bg:#9B2C36;
       --ink:#111;
-      --accent: color-mix(in oklab, var(--sofa) 86%, black);
-      --card:#ffffffee;
+      --accent:#630A13;
+      --card:#ffffff22;
       --shadow:0 8px 28px rgba(0,0,0,.12);
       --link:#0077b5;       
-      --github:#333;
+      --github:#fafafa;   
     }
     *{box-sizing:border-box}
     body{
@@ -78,7 +77,7 @@
     }
 
     h1{ margin:10px 0; font-size:2.2rem; }
-    p{ color:#555; margin:0 0 20px 0; line-height:1.6; }
+    p{ color:var(--ink); margin:0 0 20px 0; line-height:1.6; }
 
     .links a{
       margin:0 10px; text-decoration:none; color:#fff;
@@ -112,14 +111,14 @@
       gap: 16px;
     }
     .card {
-      background: var(--card, #ffffffee);
+      background:var(--card); color:var(--ink); };
       padding: 16px;
       border-radius: 12px;
       box-shadow: var(--shadow, 0 8px 28px rgba(0,0,0,.12));
       text-align: left;
     }
     .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
-    .card p { margin: 0 0 12px; color: #555; }
+    .card p { color:var(--ink); }
     .card a { font-weight: 600; text-decoration: none; }
     .card .thumb{
       width:100%; aspect-ratio:16/9; border-radius:10px;
