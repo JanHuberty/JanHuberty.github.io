@@ -10,13 +10,14 @@
   <meta property="og:image" content="https://janhuberty.github.io/IMG_1485.jpg">
   <meta property="og:url" content="https://janhuberty.github.io/">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="IMG_1485.jpg">
+  <link rel="icon" href="favicon.png" type="image/png">
 
   <style>
     :root{
-      --bg:#823B42;       
+      --sofa:#E02130;                /* pick the photo’s red (adjust if needed) */
+      --bg: color-mix(in oklab, var(--sofa) 74%, white);
       --ink:#111;
-      --accent:#630A13;
+      --accent: color-mix(in oklab, var(--sofa) 86%, black);
       --card:#ffffffee;
       --shadow:0 8px 28px rgba(0,0,0,.12);
       --link:#0077b5;       
@@ -53,7 +54,9 @@
       white-space:nowrap;
     }
     .nav a:hover{ opacity:.8; }
-
+    .nav a{ display:inline-flex; align-items:center; gap:8px; }
+    .nav img.icon{ width:24px; height:24px; display:block; }
+    
     .container{
       text-align:center;
       max-width:650px;
@@ -165,13 +168,18 @@
     .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.pushed_at) - new Date(a.pushed_at)));
   const top = filtered.slice(0, 6);
   const grid = document.getElementById('repo-grid');
+  function fmtDate(iso){
+    const d = new Date(iso);
+    return d.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+  }
   grid.innerHTML = top.map(r => `
-    <article class="card">
-      <h3>${r.name}</h3>
-      <p>${r.description || 'No description yet.'}</p>
-      <a href="${r.html_url}" target="_blank" rel="noreferrer">View repo →</a>
-    </article>
-  `).join('');
+  <article class="card">
+    <h3>${r.name}</h3>
+    <p>${r.description || 'No description yet.'}</p>
+    <p><small>⭐ ${r.stargazers_count} • ${r.language || 'Other'} • Updated ${fmtDate(r.pushed_at)}</small></p>
+    <a href="${r.html_url}" target="_blank" rel="noreferrer">View repo →</a>
+  </article>
+`).join('');
 })();
 </script>
 
