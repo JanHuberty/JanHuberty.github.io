@@ -5,63 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jan Huberty</title>
   <style>
-    body {
+    :root{
+      --bg:#f8d7da;         /* light red background */
+      --ink:#111;
+      --card:#ffffffee;
+      --shadow:0 8px 28px rgba(0,0,0,.12);
+      --link:#0077b5;       /* LinkedIn */
+      --github:#333;
+    }
+    *{box-sizing:border-box}
+    body{
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: #f8d7da;
+      margin:0; padding:0;
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      background:var(--bg);
+      color:var(--ink);
     }
-    .container {
-      text-align: center;
-      max-width: 650px;
-      padding: 24px;
+
+    /* ---- Top-right menu ---- */
+    .nav{
+      position:fixed;
+      top:12px; right:12px;
+      display:flex; gap:14px;
+      background:var(--card);
+      padding:10px 14px;
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      z-index:10;
     }
-    /* --- the circular photo --- */
-    .profile-pic {
-      width: 220px;           /* equal width & height */
-      height: 220px;          /* <- must NOT be auto */
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid #333;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      margin: 0 auto 20px auto;
+    .nav a{
+      text-decoration:none;
+      color:var(--ink);
+      font-weight:600;
+      padding:6px 10px;
+      border-radius:8px;
+      transition:opacity .15s ease;
+      white-space:nowrap;
     }
-    .profile-pic img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;      /* crops nicely */
-      display: block;
+    .nav a:hover{ opacity:.8; }
+
+    .container{
+      text-align:center;
+      max-width:650px;
+      padding:24px;
+      background:transparent;
     }
-    h1 {
-      margin: 10px 0;
-      font-size: 2.2rem;
+
+    /* --- circular photo --- */
+    .profile-pic{
+      width:220px; height:220px; /* must be square */
+      border-radius:50%;
+      overflow:hidden;
+      border:3px solid #333;
+      box-shadow:0 4px 10px rgba(0,0,0,.2);
+      margin:0 auto 20px auto;
     }
-    p {
-      color: #555;
-      margin: 0 0 20px 0;
-      line-height: 1.6;
+    .profile-pic img{
+      width:100%; height:100%;
+      object-fit:cover; display:block;
     }
-    .links a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #fff;
-      background: #0077b5;
-      padding: 10px 15px;
-      border-radius: 6px;
-      transition: opacity .2s;
-      display: inline-block;
+
+    h1{ margin:10px 0; font-size:2.2rem; }
+    p{ color:#555; margin:0 0 20px 0; line-height:1.6; }
+
+    .links a{
+      margin:0 10px; text-decoration:none; color:#fff;
+      padding:10px 15px; border-radius:6px; display:inline-block;
+      transition:opacity .2s;
     }
-    .links a.github { background: #333; }
-    .links a:hover { opacity: .85; }
+    .links a:hover{ opacity:.85; }
+    .links a.linkedin{ background:var(--link); }
+    .links a.github{ background:var(--github); }
+
+    /* small screens: stack menu tighter */
+    @media (max-width:480px){
+      .nav{ gap:8px; padding:8px 10px; }
+      .nav a{ padding:6px 8px; font-weight:600; }
+      .profile-pic{ width:180px; height:180px; }
+    }
   </style>
 </head>
-<body>
-  <div class="container">
+<body id="top">
+
+  <!-- Top-right menu -->
+  <nav class="nav">
+    <a href="#top">Home</a>
+    <a href="https://github.com/JanHuberty?tab=repositories" target="_blank" rel="noreferrer">Projects</a>
+    <a href="https://www.linkedin.com/in/janhuberty/" target="_blank" rel="noreferrer">LinkedIn</a>
+    <a href="https://github.com/JanHuberty" target="_blank" rel="noreferrer">GitHub</a>
+  </nav>
+
+  <main class="container">
     <div class="profile-pic">
       <img src="IMG_1485.jpg" alt="Jan Huberty">
     </div>
@@ -73,9 +108,10 @@
     </p>
 
     <div class="links">
-      <a href="www.linkedin.com/in/jan-huberty" target="_blank" rel="noreferrer">LinkedIn</a>
-      <a href="https://github.com/JanHuberty" target="_blank" class="github" rel="noreferrer">GitHub</a>
+      <a class="linkedin" href="https://www.linkedin.com/in/janhuberty/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a class="github" href="https://github.com/JanHuberty" target="_blank" rel="noreferrer">GitHub</a>
     </div>
-  </div>
+  </main>
+
 </body>
 </html>
