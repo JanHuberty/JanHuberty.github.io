@@ -1,11 +1,72 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Jan Huberty</title>
-  </head>
-  <body>
-    <h1>Welcome to my GitHub Page</h1>
-    <p>This is the personal portfolio and projects of Jan Huberty.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jan Huberty</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f9f9f9;
+    }
+    .container {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+    }
+    img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid #333;
+    }
+    h1 {
+      margin: 10px 0;
+      font-size: 2em;
+    }
+    p {
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #fff;
+      background: #0077b5;
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .links a.github {
+      background: #333;
+    }
+    .links a:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="profile.jpg" alt="Jan Huberty">
+    <h1>Jan Huberty</h1>
+    <p>
+      Data Analytics graduate passionate about SQL, Python, and Machine Learning.  
+      I build data-driven solutions and share projects here on GitHub.
+    </p>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank">LinkedIn</a>
+      <a href="https://github.com/JanHuberty" target="_blank" class="github">GitHub</a>
+    </div>
+  </div>
+</body>
 </html>
