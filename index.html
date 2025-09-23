@@ -64,7 +64,6 @@
       z-index:1000;
     }
     .sidebar.open { right:0; }
-
     .sidebar a {
       text-decoration:none;
       color:var(--ink);
@@ -74,6 +73,16 @@
       transition:background .2s;
     }
     .sidebar a:hover{ background:rgba(0,0,0,.05); }
+    
+    .overlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.4);
+      opacity:0; pointer-events:none;
+      transition:opacity .3s ease;
+      z-index:999;
+    }
+    .overlay.open{ opacity:1; pointer-events:auto; }
+
     .nav a{
       text-decoration:none;
       color:var(--ink);
@@ -91,7 +100,6 @@
       display: block;
     }
 
-    
     .container{
       text-align:center;
       max-width:650px;
@@ -147,7 +155,7 @@
       gap: 16px;
     }
     .card {
-      background:var(--card); color:var(--ink); };
+      background:var(--card); color:var(--ink);
       padding: 16px;
       border-radius: 12px;
       box-shadow: var(--shadow, 0 8px 28px rgba(0,0,0,.12));
@@ -170,12 +178,13 @@
     .btn.primary{ background:var(--accent); color:#fff; }
     .btn.ghost{ background:#fff; color:var(--ink); border:1px solid #e5e5e5; }
 
-
   </style>
 </head>
 <body id="top">
 
   <!-- Top-right menu -->
+  <button class="menu-btn" id="menuBtn" aria-controls="sidebar" aria-expanded="false" onclick="toggleMenu()">Menu</button>
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
    <nav class="sidebar" id="sidebar">
     <a href="#top">Home</a>
     <a href="#projects">Projects</a>
@@ -254,8 +263,24 @@
   `).join('');
 })();
 function toggleMenu(){
-  document.getElementById('sidebar').classList.toggle('open');
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('overlay');
+  const btn = document.getElementById('menuBtn');
+  const isOpen = sb.classList.toggle('open');
+  ov.classList.toggle('open', isOpen);
+  if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
+
+// Close on ESC + when a link is clicked
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('sidebar').classList.contains('open')) toggleMenu();
+});
+document.addEventListener('click', e => {
+  if (e.target.closest('#sidebar a')) {
+    if (document.getElementById('sidebar').classList.contains('open')) toggleMenu();
+  }
+});
+
 
 </script>
 
