@@ -121,6 +121,20 @@
     .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
     .card p { margin: 0 0 12px; color: #555; }
     .card a { font-weight: 600; text-decoration: none; }
+    .card .thumb{
+      width:100%; aspect-ratio:16/9; border-radius:10px;
+      overflow:hidden; background:#ddd; margin-bottom:12px;
+    }
+    .card .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .card .actions{ display:flex; gap:10px; margin-top:10px; }
+
+    .btn{
+      display:inline-block; padding:8px 12px; border-radius:8px;
+      text-decoration:none; font-weight:600; box-shadow:var(--shadow);
+    }
+    .btn.primary{ background:var(--accent); color:#fff; }
+    .btn.ghost{ background:#fff; color:var(--ink); border:1px solid #e5e5e5; }
+
 
   </style>
 </head>
@@ -160,28 +174,64 @@
 
   </main>
 <script>
-(async () => {
-  const res = await fetch('https://api.github.com/users/JanHuberty/repos?per_page=100&sort=updated');
-  const repos = await res.json();
-  const filtered = (Array.isArray(repos) ? repos : [])
-    .filter(r => !r.fork)
-    .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.pushed_at) - new Date(a.pushed_at)));
-  const top = filtered.slice(0, 6);
+(() => {
+  // 1) Curate your projects here (edit text/paths as needed)
+  const projects = [
+    {
+      title: "Thesis — Nutrition in Gaming",
+      desc: "Survey of 200+ gamers. EDA, clustering (KMeans), PCA, and dashboards summarizing nutrition behavior profiles.",
+      img: "images/thesis.jpg",
+      url: "https://github.com/JanHuberty/Thesis"
+    },
+    {
+      title: "SQL Public Library (MySQL)",
+      desc: "Relational schema (15+ tables), constraints, borrowing/membership/fines logic, and reporting queries.",
+      img: "images/library.jpg",
+      url: "https://github.com/JanHuberty/Sql-project-library"
+    },
+    {
+      title: "Pneumonia Detection (CNN)",
+      desc: "ResNet-based classifier on chest X-rays. Training, evaluation, and saved checkpoints with metrics.",
+      img: "images/pneumonia.jpg",
+      url: "https://github.com/JanHuberty/Pneumonia"
+    },
+    {
+      title: "Pascal VOC 2007 — Faster R-CNN",
+      desc: "Custom PyTorch dataset, training loop, and evaluation for object detection on Pascal VOC.",
+      img: "images/pascalvoc.jpg",
+      url: "https://github.com/JanHuberty/PascalVOC2007"
+    },
+    {
+      title: "Portfolio Site (This Page)",
+      desc: "Lightweight, responsive one-pager with curated projects and Open Graph tags for sharing.",
+      img: "images/portfolio.jpg",
+      url: "https://github.com/JanHuberty/JanHuberty.github.io"
+    },
+    {
+      title: "Misc Utilities",
+      desc: "Small scripts, notebooks, and experiments collected while learning and prototyping.",
+      img: "images/misc.jpg",
+      url: "https://github.com/JanHuberty/janhuberty"
+    }
+  ];
+
+  // 2) Render cards
   const grid = document.getElementById('repo-grid');
-  function fmtDate(iso){
-    const d = new Date(iso);
-    return d.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
-  }
-  grid.innerHTML = top.map(r => `
-  <article class="card">
-    <h3>${r.name}</h3>
-    <p>${r.description || 'No description yet.'}</p>
-    <p><small>⭐ ${r.stargazers_count} • ${r.language || 'Other'} • Updated ${fmtDate(r.pushed_at)}</small></p>
-    <a href="${r.html_url}" target="_blank" rel="noreferrer">View repo →</a>
-  </article>
-`).join('');
+  grid.innerHTML = projects.map(p => `
+    <article class="card">
+      <div class="thumb">
+        <img src="${p.img}" alt="${p.title}" loading="lazy" />
+      </div>
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      <div class="actions">
+        <a class="btn primary" href="${p.url}" target="_blank" rel="noreferrer">View project →</a>
+      </div>
+    </article>
+  `).join('');
 })();
 </script>
+
 
 </body>
 </html>
