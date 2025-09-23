@@ -54,7 +54,12 @@
     }
     .nav a:hover{ opacity:.8; }
     .nav a{ display:inline-flex; align-items:center; gap:8px; }
-    .nav svg{ width:24px; height:24px; display:block; }
+    .nav img.icon {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
     
     .container{
       text-align:center;
@@ -142,7 +147,7 @@
   <!-- Top-right menu -->
   <nav class="nav">
     <a href="#top">Home</a>
-    <a href="https://github.com/JanHuberty?tab=repositories" target="_blank" rel="noreferrer">Projects</a>
+    <a href="#projects">Projects</a>
     <a href="https://www.linkedin.com/in/jan-huberty/" target="_blank" rel="noreferrer">
       <img src="linkedin.svg" alt="LinkedIn" class="icon">
     </a>
@@ -177,7 +182,7 @@
   // 1) Curate your projects here (edit text/paths as needed)
   const projects = [
     {
-      title: "Thesis — Nutrition in Gaming",
+      title: "Master Thesis: Nutrition in Gaming",
       desc: "Survey of 200+ gamers. EDA, clustering (KMeans), PCA, and dashboards summarizing nutrition behavior profiles.",
       img: "images/thesis.jpg",
       url: "https://github.com/JanHuberty/Thesis"
@@ -189,13 +194,13 @@
       url: "https://github.com/JanHuberty/Sql-project-library"
     },
     {
-      title: "Pneumonia Detection (CNN)",
+      title: "Pneumonia Detection: CNN",
       desc: "ResNet-based classifier on chest X-rays. Training, evaluation, and saved checkpoints with metrics.",
       img: "images/pneumonia.jpg",
       url: "https://github.com/JanHuberty/Pneumonia"
     },
     {
-      title: "Pascal VOC 2007 — Faster R-CNN",
+      title: "Dataset Pascal VOC 2007: Faster R-CNN",
       desc: "Custom PyTorch dataset, training loop, and evaluation for object detection on Pascal VOC.",
       img: "images/pascalvoc.jpg",
       url: "https://github.com/JanHuberty/PascalVOC2007"
