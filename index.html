@@ -4,9 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jan Huberty</title>
+  <meta name="description" content="Jan Huberty — Data Analyst portfolio: SQL, Python, ML, Tableau projects and CV.">
+  <meta property="og:title" content="Jan Huberty — Data Analyst">
+  <meta property="og:description" content="Portfolio, projects, and CV.">
+  <meta property="og:image" content="https://janhuberty.github.io/IMG_1485.jpg">
+  <meta property="og:url" content="https://janhuberty.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="IMG_1485.jpg">
+
   <style>
     :root{
-      --bg:#e02130;       
+      --bg:#d7444e;       
       --ink:#111;
       --card:#ffffffee;
       --shadow:0 8px 28px rgba(0,0,0,.12);
@@ -91,6 +99,25 @@
       .nav a{ padding:6px 8px; font-weight:600; }
       .profile-pic{ width:180px; height:180px; }
     }
+    /* --- Projects grid --- */
+    #projects { margin-top: 32px; }
+    #projects h2 { margin: 18px 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card, #ffffffee);
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: var(--shadow, 0 8px 28px rgba(0,0,0,.12));
+      text-align: left;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .card p { margin: 0 0 12px; color: #555; }
+    .card a { font-weight: 600; text-decoration: none; }
+
   </style>
 </head>
 <body id="top">
@@ -106,6 +133,7 @@
       <img src="icons/github.svg" alt="GitHub" class="icon">
     </a>
     <a href="Jan_Huberty_CV.pdf" target="_blank" rel="noreferrer">CV</a>
+    <a href="mailto:janhuberty@gmail.com" rel="noreferrer">Contact</a>
   </nav>
 
   <main class="container">
@@ -121,16 +149,30 @@
     If you like data stories as much as I do, you’re in the right place!
   </p>
 
+    <section id="projects">
+      <h2>Projects</h2>
+      <div id="repo-grid" class="grid"></div>
+    </section>
 
-    <div class="links">
-      <a class="linkedin" href="https://www.linkedin.com/in/jan-huberty/" target="_blank" rel="noreferrer">
-        <img src="icons/linkedin.svg" alt="LinkedIn" class="icon">
-      </a>
-      <a class="github" href="https://github.com/JanHuberty" target="_blank" rel="noreferrer">
-        <img src="icons/linkedin.svg" alt="LinkedIn" class="icon">
-      </a>
-    </div>
   </main>
+<script>
+(async () => {
+  const res = await fetch('https://api.github.com/users/JanHuberty/repos?per_page=100&sort=updated');
+  const repos = await res.json();
+  const filtered = (Array.isArray(repos) ? repos : [])
+    .filter(r => !r.fork)
+    .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.pushed_at) - new Date(a.pushed_at)));
+  const top = filtered.slice(0, 6);
+  const grid = document.getElementById('repo-grid');
+  grid.innerHTML = top.map(r => `
+    <article class="card">
+      <h3>${r.name}</h3>
+      <p>${r.description || 'No description yet.'}</p>
+      <a href="${r.html_url}" target="_blank" rel="noreferrer">View repo →</a>
+    </article>
+  `).join('');
+})();
+</script>
 
 </body>
 </html>
