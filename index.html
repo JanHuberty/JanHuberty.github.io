@@ -22,7 +22,6 @@
       --link:#0077b5;       
       --github:#fafafa;   
     }
-    
     *{box-sizing:border-box}
     body{
       font-family: Arial, sans-serif;
@@ -33,180 +32,101 @@
       color:var(--ink);
     }
 
-    /* ---- Top-right menu ---- */
-    .nav{
-      position:fixed;
-      top:12px; right:12px;
-      display:flex; gap:14px;
-      background:var(--card);
-      padding:10px 14px;
-      border-radius:12px;
-      box-shadow:var(--shadow);
-      z-index:10;
-    }
-    
+    /* (legacy .nav styles kept harmlessly; using .sidebar now) */
+    .nav{ position:fixed; top:12px; right:12px; display:flex; gap:14px; background:var(--card);
+      padding:10px 14px; border-radius:12px; box-shadow:var(--shadow); z-index:10; }
+    .nav a{ text-decoration:none; color:var(--ink); font-weight:600; padding:6px 10px; border-radius:8px; transition:opacity .15s ease; white-space:nowrap; display:inline-flex; align-items:center; gap:8px; }
+    .nav a:hover{ opacity:.8; }
+    .nav img.icon { width: 24px; height: 24px; display:block; filter: brightness(0) invert(1); }
+
     .menu-btn {
       position:fixed; top:12px; right:12px;
       background:var(--card);
-      color: #fff;
+      color:#fff;
       border:none; padding:12px 20px;
-      font-size:1rem;
-      border-radius:8px;
-      box-shadow:var(--shadow);
-      font-weight:600;
-      cursor:pointer;
-      z-index:1001;
+      font-size:1rem; border-radius:8px;
+      box-shadow:var(--shadow); font-weight:600; cursor:pointer; z-index:1001;
     }
-    
     .sidebar {
-      position:fixed; top:0; right:-260px; /* hidden off screen */
+      position:fixed; top:0; right:-260px;
       width:240px; height:100vh;
       background:var(--card);
       box-shadow: -4px 0 12px rgba(0,0,0,0.2);
-      padding:60px 20px;
-      display:flex; flex-direction:column; gap:18px;
-      transition:right .3s ease;
-      z-index:1000;
+      padding:60px 20px; display:flex; flex-direction:column; gap:18px;
+      transition:right .3s ease; z-index:1000;
     }
     .sidebar.open { right:0; }
     .sidebar a {
-      text-decoration:none;
-      color:var(--ink);
-      font-weight:600;
-      padding:10px;
-      border-radius:8px;
-      transition:background .2s;
+      text-decoration:none; color:var(--ink); font-weight:600;
+      padding:10px; border-radius:8px; transition:background .2s;
     }
     .sidebar a:hover{ background:rgba(0,0,0,.05); }
-    .sidebar img.icon {
-      width: 24px;   
-      height: 24px;
-    }
-    .nav img.icon {
-      filter: brightness(0) invert(1);
-    }
+    .sidebar img.icon { width:24px; height:24px; }
+
     .overlay{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.4);
-      opacity:0; pointer-events:none;
-      transition:opacity .3s ease;
-      z-index:999;
+      position:fixed; inset:0; background:rgba(0,0,0,.4);
+      opacity:0; pointer-events:none; transition:opacity .3s ease; z-index:999;
     }
     .overlay.open{ opacity:1; pointer-events:auto; }
 
-    .nav a{
-      text-decoration:none;
-      color:var(--ink);
-      font-weight:600;
-      padding:6px 10px;
-      border-radius:8px;
-      transition:opacity .15s ease;
-      white-space:nowrap;
-    }
-    .nav a:hover{ opacity:.8; }
-    .nav a{ display:inline-flex; align-items:center; gap:8px; }
-    .nav img.icon {
-      width: 24px;
-      height: 24px;
-      display: block;
-    }
-
-    .container{
-      text-align:center;
-      max-width:650px;
-      padding:24px;
-      background:transparent;
-    }
-
+    .container{ text-align:center; max-width:650px; padding:24px; background:transparent; }
     .profile-pic{
-      width:220px; height:220px; /* must be square */
-      border-radius:50%;
-      overflow:hidden;
-      border:3px solid #fff;
-      box-shadow:0 4px 10px rgba(0,0,0,.2);
-      margin:0 auto 20px auto;
+      width:220px; height:220px; border-radius:50%; overflow:hidden;
+      border:3px solid #fff; box-shadow:0 4px 10px rgba(0,0,0,.2); margin:0 auto 20px auto;
     }
-    .profile-pic img{
-      width:100%; height:100%;
-      object-fit:cover; display:block;
-    }
+    .profile-pic img{ width:100%; height:100%; object-fit:cover; display:block; }
 
     h1{ margin:10px 0; font-size:2.2rem; }
     p{ color:var(--ink); margin:0 0 20px 0; line-height:1.6; }
 
     .links a{
       margin:0 10px; text-decoration:none; color:#fff;
-      padding:10px 15px; border-radius:6px; display:inline-block;
-      transition:opacity .2s;
+      padding:10px 15px; border-radius:6px; display:inline-block; transition:opacity .2s;
     }
     .links a:hover{ opacity:.85; }
     .links a.linkedin{ background:var(--link); }
     .links a.github{ background:var(--github); }
-    .links img.icon {
-      width: 40px;
-      height: 40px;
-      margin: 0 10px;
-      vertical-align: middle;
-      transition: transform .2s, opacity .2s;
-    }
-    .links img.icon:hover { transform: scale(1.1); opacity: .85; }
+    .links img.icon { width:40px; height:40px; margin:0 10px; vertical-align:middle; transition: transform .2s, opacity .2s; }
+    .links img.icon:hover { transform: scale(1.1); opacity:.85; }
 
-    /* small screens: stack menu tighter */
     @media (max-width:480px){
       .nav{ gap:8px; padding:8px 10px; }
       .nav a{ padding:6px 8px; font-weight:600; }
       .profile-pic{ width:180px; height:180px; }
     }
-    
-    /* --- Projects grid --- */
+
+    /* Projects grid */
     #projects { margin-top: 32px; }
     #projects h2 { margin: 18px 0; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-    
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; }
     .card {
-      background:var(--card); color:var(--ink);
-      padding: 16px;
-      border-radius: 12px;
-      box-shadow: var(--shadow, 0 8px 28px rgba(0,0,0,.12));
-      text-align: left;
+      background:var(--card); color:var(--ink); padding:16px; border-radius:12px; box-shadow:var(--shadow); text-align:left;
     }
-    .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .card h3 { margin:0 0 8px; font-size:1.05rem; }
     .card p { color:var(--ink); }
-    .card a { font-weight: 600; text-decoration: none; }
-    .card .thumb{
-      width:100%; aspect-ratio:16/9; border-radius:10px;
-      overflow:hidden; background:#ddd; margin-bottom:12px;
-    }
+    .card a { font-weight:600; text-decoration:none; }
+    .card .thumb{ width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:#ddd; margin-bottom:12px; }
     .card .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
     .card .actions{ display:flex; gap:10px; margin-top:10px; }
-
-    .btn{
-      display:inline-block; padding:8px 12px; border-radius:8px;
-      text-decoration:none; font-weight:600; box-shadow:var(--shadow);
-    }
+    .btn{ display:inline-block; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600; box-shadow:var(--shadow); }
     .btn.primary{ background:var(--accent); color:#fff; }
     .btn.ghost{ background:#fff; color:var(--ink); border:1px solid #e5e5e5; }
-
   </style>
 </head>
 <body id="top">
 
-  <!-- Top-right menu -->
+  <!-- Menu -->
   <button class="menu-btn" id="menuBtn" aria-controls="sidebar" aria-expanded="false" onclick="toggleMenu()">Menu</button>
   <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
-   <nav class="sidebar" id="sidebar">
+  <nav class="sidebar" id="sidebar">
     <a href="#top">Home</a>
     <a href="#projects">Projects</a>
     <a href="https://www.linkedin.com/in/jan-huberty/" target="_blank" rel="noreferrer">
-      <img src="linkedin.svg" alt="LinkedIn" class="icon">
+      <img src="icons/linkedin.svg" alt="LinkedIn" class="icon">
     </a>
     <a href="https://github.com/JanHuberty" target="_blank" rel="noreferrer">
-      <img src="github.svg" alt="GitHub" class="icon">
+      <img src="icons/github.svg" alt="GitHub" class="icon">
     </a>
     <a href="Jan_Huberty_CV.pdf" target="_blank" rel="noreferrer">CV</a>
     <a href="mailto:janhuberty@gmail.com" rel="noreferrer">Contact</a>
@@ -219,84 +139,86 @@
 
     <h1>Jan Huberty</h1>
     <p>
-    Hi, I’m Jan! 
-    🎓 Freshly graduated from university and currently looking for my next big adventure in data.  
-    This site is my little corner of the internet to showcase projects I’ve built, from machine learning models to SQL databases and dashboards.  
-    If you like data stories as much as I do, you’re in the right place!
-  </p>
+      Hi, I’m Jan! 🎓 Freshly graduated and looking for my next big adventure in data.
+      This site showcases projects I’ve built—from machine learning models to SQL databases and dashboards.
+      If you like data stories as much as I do, you’re in the right place!
+    </p>
 
     <section id="projects">
       <h2>Projects</h2>
       <div id="repo-grid" class="grid"></div>
     </section>
-
   </main>
-<script>
-(() => {
- const projects = [
-  {
-    title: "Master Thesis: Nutrition in Gaming",
-    desc: "Survey of 200+ gamers. EDA, clustering (KMeans), PCA, and dashboards summarizing nutrition behavior profiles.",
-    img: "images/thesis.jpg",
-    page: "projects/thesis.html"
-  },
-  {
-    title: "SQL Public Library (MySQL)",
-    desc: "Relational schema (15+ tables), constraints, borrowing/membership/fines logic, and reporting queries.",
-    img: "images/library.jpg",
-    page: "projects/sql-library.html"
-  },
-  {
-    title: "Pneumonia Detection: CNN",
-    desc: "ResNet-based classifier on chest X-rays. Training, evaluation, and saved checkpoints with metrics.",
-    img: "images/pneumonia.jpg",
-    page: "projects/pneumonia.html"
-  },
-  {
-    title: "Dataset Pascal VOC 2007: Faster R-CNN",
-    desc: "Custom PyTorch dataset, training loop, and evaluation for object detection on Pascal VOC.",
-    img: "images/pascalvoc.jpg",
-    page: "projects/pascalvoc.html"
-  }
-];
 
-// 2) Render cards
-const grid = document.getElementById('repo-grid');
-grid.innerHTML = projects.map(p => `
-  <article class="card">
-    <div class="thumb">
-      <img src="${p.img}" alt="${p.title}" loading="lazy" />
-    </div>
-    <h3>${p.title}</h3>
-    <p>${p.desc}</p>
-    <div class="actions">
-      <a class="btn primary" href="${p.page}">View</a>
-    </div>
-  </article>
-`).join('');
+  <script>
+  (() => {
+    const projects = [
+      {
+        title: "Master Thesis: Nutrition in Gaming",
+        desc: "Survey of 200+ gamers. EDA, clustering (KMeans), PCA, and dashboards summarizing nutrition behavior profiles.",
+        img: "images/thesis.jpg",
+        page: "projects/thesis.html"
+      },
+      {
+        title: "SQL Public Library (MySQL)",
+        desc: "Relational schema (15+ tables), constraints, borrowing/membership/fines logic, and reporting queries.",
+        img: "images/library.jpg",
+        page: "projects/sql-library.html"
+      },
+      {
+        title: "Pneumonia Detection: CNN",
+        desc: "ResNet-based classifier on chest X-rays. Training, evaluation, and saved checkpoints with metrics.",
+        img: "images/pneumonia.jpg",
+        page: "projects/pneumonia.html"
+      },
+      {
+        title: "Dataset Pascal VOC 2007: Faster R-CNN",
+        desc: "Custom PyTorch dataset, training loop, and evaluation for object detection on Pascal VOC.",
+        img: "images/pascalvoc.jpg",
+        page: "projects/pascalvoc.html"
+      }
+    ];
 
-function toggleMenu(){
-  const sb = document.getElementById('sidebar');
-  const ov = document.getElementById('overlay');
-  const btn = document.getElementById('menuBtn');
-  const isOpen = sb.classList.toggle('open');
-  ov.classList.toggle('open', isOpen);
-  if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-}
+    // Render project cards
+    const grid = document.getElementById('repo-grid');
+    if (grid) {
+      grid.innerHTML = projects.map(p => `
+        <article class="card">
+          <div class="thumb">
+            <img src="${p.img}" alt="${p.title}" loading="lazy" />
+          </div>
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+          <div class="actions">
+            <a class="btn primary" href="${p.page}">View</a>
+          </div>
+        </article>
+      `).join('');
+    }
 
-// Close on ESC + when a link is clicked
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && document.getElementById('sidebar').classList.contains('open')) toggleMenu();
-});
-document.addEventListener('click', e => {
-  if (e.target.closest('#sidebar a')) {
-    if (document.getElementById('sidebar').classList.contains('open')) toggleMenu();
-  }
-});
+    function toggleMenu(){
+      const sb = document.getElementById('sidebar');
+      const ov = document.getElementById('overlay');
+      const btn = document.getElementById('menuBtn');
+      const isOpen = sb.classList.toggle('open');
+      ov.classList.toggle('open', isOpen);
+      if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
 
+    // Expose for inline onclick
+    window.toggleMenu = toggleMenu;
 
-</script>
-
+    // ESC to close & close when clicking a sidebar link
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && document.getElementById('sidebar').classList.contains('open')) toggleMenu();
+    });
+    document.addEventListener('click', e => {
+      if (e.target.closest('#sidebar a')) {
+        if (document.getElementById('sidebar').classList.contains('open')) toggleMenu();
+      }
+    });
+  })();
+  </script>
 
 </body>
 </html>
