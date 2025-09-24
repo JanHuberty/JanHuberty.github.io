@@ -4,25 +4,25 @@
       {
         title: "Master Thesis: Nutrition in Gaming",
         desc: "Survey of 200+ gamers. EDA, clustering (KMeans), PCA, and dashboards summarizing nutrition behavior profiles.",
-        img: "images/thesis.jpg",
+        img: "assets/images/thesis.jpg",
         page: "projects/thesis.html"
       },
       {
         title: "SQL Public Library (MySQL)",
         desc: "Relational schema (15+ tables), constraints, borrowing/membership/fines logic, and reporting queries.",
-        img: "images/library.jpg",
+        img: "assets/images/library.jpg",
         page: "projects/sql-library.html"
       },
       {
         title: "Pneumonia Detection: CNN",
         desc: "ResNet-based classifier on chest X-rays. Training, evaluation, and saved checkpoints with metrics.",
-        img: "images/pneumonia.jpg",
+        img: "assets/images/pneumonia.jpg",
         page: "projects/pneumonia.html"
       },
       {
         title: "Dataset Pascal VOC 2007: Faster R-CNN",
         desc: "Custom PyTorch dataset, training loop, and evaluation for object detection on Pascal VOC.",
-        img: "images/pascalvoc.jpg",
+        img: "assets/images/pascalvoc.jpg",
         page: "projects/pascalvoc.html"
       }
     ];
