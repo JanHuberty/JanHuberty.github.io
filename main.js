@@ -1,5 +1,4 @@
-<script>
-  (() => {
+(() => {
     const projects = [
       {
         title: "Master Thesis: Nutrition in Gaming",
@@ -66,4 +65,3 @@
       }
     });
   })();
-  </script>
