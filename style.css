@@ -13,6 +13,7 @@ body{
   margin:0; padding:0;
   min-height:100vh;
   display:flex; align-items:center; justify-content:center;
+  padding-top: clamp(24px, 8vh, 96px);
   background:var(--bg);
   color:var(--ink);
 }
